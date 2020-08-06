@@ -2,6 +2,7 @@
 # Python Modules
 import os
 import matplotlib.pyplot as plt 
+import glob
 # ROSCO toolbox modules 
 from ROSCO_toolbox import utilities
 
@@ -13,9 +14,9 @@ fast_pl = utilities.FAST_Plots()
 # filenames = ["../Test_Cases/5MW_Land/5MW_Land.outb"]
 
 # ---- Note: Could plot multiple cases, textfiles, and binaries...
-openfast_dir = os.path.join(os.getcwd(), 'IEA-15-240-RWT', 'OpenFAST','IEA-15-240-RWT-Monopile')
+openfast_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'BAR_00')
 
-filenames = [glob.glob(os.path.join(openfast_dir, '*.outb'))]
+filenames = [glob.glob(os.path.join(openfast_dir, '*.outb'))[0]]
 
 # Load output info and data
 fast_out = fast_io.load_FAST_out(filenames)
