@@ -3,3 +3,7 @@
 
 # OpenFAST
 *.sum
+*.dbg 
+*.ech
+
+*WISDEM*
