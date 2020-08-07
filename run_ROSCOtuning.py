@@ -16,7 +16,7 @@ if platform.system() == 'Windows':
     else:
         openfast_call = os.path.join( os.path.dirname(os.path.realpath(__file__)), 'OpenFAST_executables', 'openfast_x64.exe')
 elif platform.system() == 'Darwin':
-    openfast_call = 'openfast_single'
+    openfast_call = 'openfast'
 
 
 # Define model paths
