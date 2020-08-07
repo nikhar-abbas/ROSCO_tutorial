@@ -10,15 +10,15 @@ path_params:
 
 # -------------------------------- TURBINE PARAMETERS ----------------------------------- 
 turbine_params:
-  rotor_inertia:      297984998.743        # Rotor inertia [kg m^2], {Available in Elastodyn .sum file}
-  rated_rotor_speed:  0.82527               # Rated rotor speed [rad/s]
+  rotor_inertia:      297997280.000        # Rotor inertia [kg m^2], {Available in Elastodyn .sum file}
+  rated_rotor_speed:  0.801147314           # Rated rotor speed [rad/s]
   v_min:              3.0                   # Cut-in wind speed [m/s] 
   v_rated:            8.27356               # Rated wind speed [m/s]
   v_max:              25.0                  # Cut-out wind speed [m/s], -- Does not need to be exact (JUST ASSUME FOR NOW)
   max_pitch_rate:     2.                    # Maximum blade pitch rate [deg/s]
   max_torque_rate:    4500000.              # Maximum torque rate [Nm/s], {~1/4 VS_RtTq/s}
   rated_power:        5000000.              # Rated Power [W]
-  bld_edgewise_freq:  3.27082               # Blade edgewise first natural frequency [rad/s]
+  bld_edgewise_freq:  4.31752              # Blade edgewise first natural frequency [rad/s]
   bld_flapwise_freq:  2.7209                # Blade flapwise first natural frequency [rad/s]
   # Optional 
   TSR_operational:    # None                  # Desired below-rated operational tip speed ratio (Cp-maximizing TSR is used if not defined)
@@ -42,20 +42,20 @@ controller_params:
   Fl_Mode:            0                     # Floating specific feedback mode {0: no nacelle velocity feedback, 1: nacelle velocity feedback}
   Flp_Mode:           0                     # Flap control mode {0: no flap control, 1: steady state flap angle, 2: Proportional flap control}
   # Controller parameters 
-  zeta_pc:            1.1                    # Pitch controller desired damping ratio [-]
-  omega_pc:           0.2                    # Pitch controller desired natural frequency [rad/s]
-  zeta_vs:            0.5                    # Torque controller desired damping ratio [-]
+  zeta_pc:            0.8                    # Pitch controller desired damping ratio [-]
+  omega_pc:           0.3                    # Pitch controller desired natural frequency [rad/s]
+  zeta_vs:            0.55                    # Torque controller desired damping ratio [-]
   omega_vs:           0.1                    # Torque controller desired natural frequency [rad/s]
   # Only needed if Flp_Mode > 0
   zeta_flp:           # None                     # Flap controller desired damping ratio [-]
   omega_flp:          # None                     # Flap controller desired natural frequency [rad/s]
   # Optional - these can be defined, but do not need to be
   max_pitch:          # None                  # Maximum pitch angle [rad], {default = 90 degrees}
-  min_pitch:          # None                  # Minimum pitch angle [rad], {default = 0 degrees}
+  min_pitch:          0.0                    # Minimum pitch angle [rad], {default = 0 degrees}
   vs_minspd:          # None                  # Minimum rotor speed [rad/s], {default = 0 rad/s}
   ss_cornerfreq:      # None                  # First order low-pass filter cornering frequency for setpoint smoother [rad/s]
   ss_vsgain:          # None                  # Torque controller setpoint smoother gain bias percentage [%, <= 1 ], {default = 100%}
-  ss_pcgain:          # None                  # Pitch controller setpoint smoother gain bias percentage  [%, <= 1 ], {default = 0.1%}
+  ss_pcgain:          0.01                  # Pitch controller setpoint smoother gain bias percentage  [%, <= 1 ], {default = 0.1%}
   ps_percent:         # None                  # Percent peak shaving  [%, <= 1 ], {default = 80%}
   sd_maxpit:          # None                  # Maximum blade pitch angle to initiate shutdown [rad], {default = bld pitch at v_max}
   sd_cornerfreq:      # None                  # Cutoff Frequency for first order low-pas
