@@ -16,16 +16,19 @@ fast_pl = utilities.FAST_Plots()
 # ---- Note: Could plot multiple cases, textfiles, and binaries...
 openfast_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'BAR_00')
 
-filenames = [glob.glob(os.path.join(openfast_dir, '*.outb'))[0]]
+filenames = glob.glob(os.path.join(openfast_dir, '*.outb'))
+
+outfiles = []
+outfiles = [os.path.split(fname)[-1:][0] for fname in filenames]
+print('Plotting results from {}'.format(outfiles))
 
 # Load output info and data
-fast_out = fast_io.load_FAST_out(filenames)
+fast_out = fast_io.load_FAST_out(filenames, tmin=0)
 
 #  Define Plot cases 
 #  --- Comment,uncomment, create, and change these as desired...
 cases = {}
-cases['Baseline'] = ['Wind1VelX', 'BldPitch1', 'GenTq', 'RotSpeed', 'GenPwr']
-cases['Rotor Performance'] = ['RtVAvgxh', 'RtTSR', 'RtAeroCp']
+cases['Baseline'] = ['Wind1VelX', 'BldPitch1', 'GenTq', 'RotSpeed', 'GenPwr', 'TwrBsMyt']
 
 # Plot, woohoo!
 fig, ax = fast_pl.plot_fast_out(cases, fast_out)

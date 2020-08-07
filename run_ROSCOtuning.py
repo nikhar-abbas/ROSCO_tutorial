@@ -16,7 +16,7 @@ if platform.system() == 'Windows':
     else:
         openfast_call = os.path.join( os.path.dirname(os.path.realpath(__file__)), 'OpenFAST_executables', 'openfast_x64.exe')
 elif platform.system() == 'Darwin':
-    openfast_call = 'openfast'
+    openfast_call = 'openfast_single'
 
 
 # Define model paths
@@ -51,7 +51,8 @@ cont.tune_controller(turb)
 
 # Write parameter input file
 # This must be named DISCON.IN to be seen by the compiled controller binary.
-param_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'BAR_00', 'DISCON-Monopile.IN')
+param_filename = 'OpenFAST_BAR_00_DISCON.IN'
+param_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'BAR_00', param_filename)
 file_processing.write_DISCON(turb, cont, param_file=param_file,
                              txt_filename=path_params['rotor_performance_filename'])
 
