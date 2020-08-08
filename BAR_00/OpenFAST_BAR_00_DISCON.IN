@@ -66,7 +66,7 @@
 
 !------- SETPOINT SMOOTHER ---------------------------------------------
 1.00000             ! SS_VSGain         - Variable speed torque controller setpoint smoother gain, [-].
-0.01000             ! SS_PCGain         - Collective pitch controller setpoint smoother gain, [-].
+0.00100             ! SS_PCGain         - Collective pitch controller setpoint smoother gain, [-].
 
 !------- WIND SPEED ESTIMATOR ---------------------------------------------
 102.996             ! WE_BladeRadius	- Blade length (distance from hub center to blade tip), [m]

@@ -6,19 +6,13 @@ import glob
 # ROSCO toolbox modules 
 from ROSCO_toolbox import utilities
 
-# Instantiate fast_IO
+# Instantiate fast_IO and FAST_Plots
 fast_io = utilities.FAST_IO()
 fast_pl = utilities.FAST_Plots()
 
-# Define openfast output filenames
-# filenames = ["../Test_Cases/5MW_Land/5MW_Land.outb"]
-
-# ---- Note: Could plot multiple cases, textfiles, and binaries...
+# Define openfast directory and output filenames
 openfast_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'BAR_00')
-
 filenames = glob.glob(os.path.join(openfast_dir, '*.outb'))
-
-
 outfiles = []
 outfiles = [os.path.split(fname)[-1:][0] for fname in filenames]
 print('Plotting results from {}'.format(outfiles[::-1]))

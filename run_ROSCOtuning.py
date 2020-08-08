@@ -18,24 +18,12 @@ if platform.system() == 'Windows':
 elif platform.system() == 'Darwin':
     openfast_call = 'openfast'
 
-
-# Define model paths
-# model_path = os.path.join(os.getcwd(), ROSCO_tutorial/IEA-15-240-RWT-Monopile)
-# model_fst = 'IEA-15-240-RWT-Monopile.fst'
-# rotperf_file = os.path.join(os.getcwd(), 'IEA-15-240-RWT', 'OpenFAST',
-#                             'IEA-15-240-RWT', 'Cp_Ct_Cq.IEA15MW.txt')
-
 # Load yaml file
 parameter_filename = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'BAR_00', 'ServoData', 'BAR_00.yaml')
 inps = yaml.safe_load(open(parameter_filename))
 path_params = inps['path_params']
 turbine_params = inps['turbine_params']
 controller_params = inps['controller_params']
-
-# Update path parameters for this tutorial
-# path_params['FAST_directory'] = model_path
-# path_params['FAST_InputFile'] = model_fst
-# path_params['rotor_performance_filename'] = rotperf_file
 
 # Instantiate turbine, controller, and file processing classes
 turb = turbine.Turbine(turbine_params)
@@ -50,13 +38,12 @@ turb.load_from_fast(path_params['FAST_InputFile'], path_params['FAST_directory']
 cont.tune_controller(turb)
 
 # Write parameter input file
-# This must be named DISCON.IN to be seen by the compiled controller binary.
 param_filename = 'OpenFAST_BAR_00_DISCON.IN'
 param_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'BAR_00', param_filename)
 file_processing.write_DISCON(turb, cont, param_file=param_file,
                              txt_filename=path_params['rotor_performance_filename'])
 
 # Run OpenFAST
-# --- May need to change fastcall if you use a non-standard command to call openfast
+# --- May need to change openfast_call to use your desired openfast version
 fast_io.run_openfast(path_params['FAST_directory'], fastcall=openfast_call,
                      fastfile=path_params['FAST_InputFile'], chdir=True)
